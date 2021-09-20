@@ -1,7 +1,10 @@
 require('dotenv').config({path: "./config.env"})
-
+const connectDB = require('./config/db')
 const express = require('express')
 const app = express()
+
+// Connext DB
+connectDB()
 
 app.use(express.json())
 app.use('/api/auth', require('./routes/auth'))
