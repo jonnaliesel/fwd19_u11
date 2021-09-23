@@ -39,7 +39,7 @@ UserSchema.methods.matchPassword = async function(password) {
   return await bcrypt.compare(password, this.password)
 }
 
-UserSchema.methods.getSignedToken = function() {
+UserSchema.methods.getSignedToken = function () {
   return jwt.sign(
     { id: this._id },
     process.env.JWT_SECRET,
