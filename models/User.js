@@ -4,10 +4,6 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const UserSchema = new mongoose.Schema({
-  username: {
-    type: String, 
-    required: [true, 'Vänligen ange ett användarnamn']
-  },
   email: {
     type: String,
     required: [true, 'Vänligen ange en mejladress'],
