@@ -1,3 +1,4 @@
+const crypto = require('crypto')
 const User = require('../models/User')
 const ErrorResponse = require('../utils/errorResponse')
 const sendEmail = require('../utils/sendEmail')
@@ -78,7 +79,7 @@ exports.forgotPassword = async (req, res, next) => {
 
       res.status(200).json({
         success: true, 
-        data: 'Email sent'
+        data: `Email sent, token: ${resetToken}` // TODO: TA BORT TOKEN!!!!
       })
     } catch (error) {
       user.getResetPasswordToken = undefined
@@ -93,8 +94,35 @@ exports.forgotPassword = async (req, res, next) => {
   }
 }
 
-exports.resetPassword = (req, res, next) => {
-  res.send('Reset Password Route')
+exports.resetPassword = async (req, res, next) => {
+  const resetPasswordToken = crypto
+    .createHash('sha256')
+    .update(req.params.resetToken)
+    .digest('hex')
+  
+    try {
+      const user = await User.findOne({
+        resetPasswordToken,
+        resetPasswordExpire: { $gt: Date.now() }
+      })
+
+      if(!user) {
+        return next(new ErrorResponse('Invalid reset token', 400))
+      }
+
+      user.password = req.body.password
+      user.resetPasswordToken = undefined
+      user.resetPasswordExpire = undefined
+
+      await user.save()
+
+      res.status(201).json({
+        success: true, 
+        data: 'Password reset success'
+      })
+    } catch (error) {
+      next(error)
+    }
 }
 
 const sendToken = (user, statusCode, res) => {
