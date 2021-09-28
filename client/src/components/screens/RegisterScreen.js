@@ -48,13 +48,14 @@ const RegisterScreen = ({ history }) => {
     }
 
     return (
-        <div className="">
-            <form onSubmit={registerHandler} className="">
-                <h3 className="">Register</h3>
+        <div className="h-screen w-screen flex justify-center bg-light">
+            <form onSubmit={registerHandler} className="my-auto bg-accent p-8">
+                <h3 className="font-bold text-xl">Register</h3>
                 {error && <span className="text-red-800">{error}</span>}
-                <div className="">
-                    <label htmlFor="email">Email:</label>
-                    <input 
+                <div className="mt-4">
+                    <label htmlFor="email">Email</label>
+                    <input
+                        className="block mt-2 px-4 py-2"
                         type="email"
                         required
                         id="email"
@@ -64,9 +65,10 @@ const RegisterScreen = ({ history }) => {
                     />
                 </div>
                 
-                <div className="">
-                    <label htmlFor="password">Password:</label>
-                    <input 
+                <div className="mt-4">
+                    <label htmlFor="password">Password</label>
+                    <input
+                        className="block mt-2 px-4 py-2"
                         type="password"
                         required
                         id="password"
@@ -76,9 +78,10 @@ const RegisterScreen = ({ history }) => {
                     />
                 </div>
 
-                <div className="">
-                    <label htmlFor="confirmpassword">Confirm password:</label>
-                    <input 
+                <div className="mt-4">
+                    <label htmlFor="confirmpassword">Confirm password</label>
+                    <input
+                        className="block mt-2 px-4 py-2"
                         type="password"
                         required
                         id="confirmpassword"
@@ -88,8 +91,16 @@ const RegisterScreen = ({ history }) => {
                     />
                 </div>
 
-                <button type="submit" className="btn-primary">Register</button>
-                <span className="">Already have an account? <Link to="/login">Login</Link></span>
+                <button 
+                    type="submit" 
+                    className="mt-4 px-6 py-1 
+                        bg-coffee hover:bg-light 
+                        rounded-full 
+                        text-light hover:text-coffee
+                    ">Register</button>
+                <span className="block text-xs mt-4">
+                    Already have an account? <Link to="/login" className="hover:text-coffee">Login</Link>
+                </span>
             </form>
         </div>
     )

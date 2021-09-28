@@ -40,13 +40,15 @@ const LoginScreen = ({ history }) => {
     }
 
     return (
-        <div className="">
-            <form onSubmit={loginHandler} className="">
-                <h3 className="">Login</h3>
+        <div className="h-screen w-screen flex justify-center bg-light">
+            <form onSubmit={loginHandler} className="my-auto bg-accent p-8">
+                <h3 className="font-bold text-xl">Login</h3>
                 {error && <span className="text-red-800">{error}</span>}
-                <div className="">
-                    <label htmlFor="email">Email:</label>
+                
+                <div className="mt-4">
+                    <label htmlFor="email">Email</label>
                     <input 
+                        className="block mt-2 px-4 py-2"
                         type="email"
                         required
                         id="email"
@@ -56,9 +58,10 @@ const LoginScreen = ({ history }) => {
                     />
                 </div>
                 
-                <div className="">
-                    <label htmlFor="password">Password:</label>
+                <div className="mt-4">
+                    <label htmlFor="password">Password</label>
                     <input 
+                        className="block mt-2 px-4 py-2"
                         type="password"
                         required
                         id="password"
@@ -68,9 +71,15 @@ const LoginScreen = ({ history }) => {
                     />
                 </div>
 
-                <button type="submit" className="btn-primary">Login</button>
-                <span className="">
-                    Don't have an account yet? <Link to="/register">Register</Link>
+                <button 
+                    type="submit" 
+                    className="mt-4 px-6 py-1 
+                        bg-coffee hover:bg-light 
+                        rounded-full 
+                        text-light hover:text-coffee"
+                >Login</button>
+                <span className="block text-xs mt-4">
+                    Don't have an account yet? <Link to="/register" className="hover:text-coffee">Register</Link>
                 </span>
             </form>
         </div>
