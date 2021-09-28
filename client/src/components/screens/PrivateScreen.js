@@ -3,14 +3,14 @@ import axios from 'axios'
 
 const PrivateScreen = ({ history }) => {
     const [error, setError] = useState('')
-    const [privateData, setPrivateData] = useState('')
+    const [userInfo, setUserInfo] = useState('')
 
     useEffect(() => {
         if(!localStorage.getItem('authToken')) {
             history.push('/login')
         }
         
-        const fetchPrivateData = async () => {
+        const fetchUserInfo = async () => {
             const config = {
                 headers: {
                     "Content-Type": "application/json",
@@ -20,14 +20,14 @@ const PrivateScreen = ({ history }) => {
 
             try {
                 const { data } = await axios.get('/api/private', config)
-                setPrivateData(data.data)
+                setUserInfo(data.data)
             } catch (error) {
                 localStorage.removeItem('authToken')
                 setError('You are not authorized, please login')
             }
         }
 
-        fetchPrivateData()
+        fetchUserInfo()
     }, [history])
     
     const logoutHandler = () => {
@@ -39,7 +39,7 @@ const PrivateScreen = ({ history }) => {
         <span className="text-red-800">{error}</span>
     ) : (
         <>
-            <div className="bg-coffee text-white p-6">{privateData}</div>
+            <div className="bg-coffee text-white p-6">{userInfo.firstName} {userInfo.lastName}</div>
             <button className="" onClick={logoutHandler}>Logout</button>
         </>
     )

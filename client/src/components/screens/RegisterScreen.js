@@ -3,6 +3,9 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 const RegisterScreen = ({ history }) => {
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [company, setCompany] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
@@ -33,7 +36,8 @@ const RegisterScreen = ({ history }) => {
         }
 
         try {
-            const { data } = await axios.post('/api/auth/register', {email, password},
+            const { data } = await axios.post('/api/auth/register', 
+            {firstName, lastName, company, email, password},
             config)
 
             localStorage.setItem('authToken', data.token)
@@ -52,6 +56,44 @@ const RegisterScreen = ({ history }) => {
             <form onSubmit={registerHandler} className="my-auto bg-accent p-8">
                 <h3 className="font-bold text-xl">Register</h3>
                 {error && <span className="text-red-800">{error}</span>}
+                <div className="mt-4">
+                    <label htmlFor="firstaname">First Name</label>
+                    <input
+                        className="block mt-2 px-4 py-2"
+                        type="text"
+                        required
+                        id="firstname"
+                        placeholder="Enter first name"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                    />
+                </div>
+                
+                <div className="mt-4">
+                    <label htmlFor="lastname">Last Name</label>
+                    <input
+                        className="block mt-2 px-4 py-2"
+                        type="text"
+                        required
+                        id="lastname"
+                        placeholder="Enter last name"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                    />
+                </div>
+
+                <div className="mt-4">
+                    <label htmlFor="company">Company (volountary)</label>
+                    <input
+                        className="block mt-2 px-4 py-2"
+                        type="text"
+                        id="company"
+                        placeholder="Enter company"
+                        value={company}
+                        onChange={(e) => setCompany(e.target.value)}
+                    />
+                </div>
+
                 <div className="mt-4">
                     <label htmlFor="email">Email</label>
                     <input

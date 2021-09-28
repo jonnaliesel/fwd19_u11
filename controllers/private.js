@@ -1,6 +1,13 @@
-exports.getPrivateData = (req, res, next) => {
+const crypto = require('crypto')
+const User = require('../models/User')
+const ErrorResponse = require('../utils/errorResponse')
+
+exports.getOne = async (req, res, next) => {
     res.status(200).json({
         success: true, 
-        data: 'OMG Cool! This is all of your secret stuff <3'
+        data: {
+            firstName: req.user.firstName,
+            lastName: req.user.lastName
+        }
     })
 }
