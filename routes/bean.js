@@ -10,7 +10,7 @@ const {
 } = require('../controllers/bean')
 
 
-router.route('/create').get(create)
+router.route('/create').post(create)
 router.route('/').get(findAll)
 router.route('/:id').get(findOne)
 router.route('/update/:id').put(update)
