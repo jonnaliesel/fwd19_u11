@@ -32,7 +32,10 @@ const UserSchema = new mongoose.Schema({
       select: false
   },
   resetPasswordToken: String,
-  resetPasswordExpire: Date
+  resetPasswordExpire: Date,
+  beans: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Bean' }],
+  recipes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Recipe' }]
+  
 })
 
 UserSchema.pre('save', async function(next) {
