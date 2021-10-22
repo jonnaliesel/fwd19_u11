@@ -21,23 +21,12 @@ exports.create = async (req, res, next) => {
 }
 
 exports.findAll = async (req, res, next) => {
+  const { userId } = req.body
 
   try {
-    const beans = await Bean.find()
+    const beans = await Bean.find({user: userId})
 
     res.status(200).json({ success: true, beans })
-  } catch (error) {
-    next(error)
-  }
-}
-
-exports.findOne = async (req, res, next) => {
-  const { id } = req.body
-
-  try {
-    const bean = await Bean.findOne({id})
-
-    res.status(200).json({ success: true, bean })
   } catch (error) {
     next(error)
   }

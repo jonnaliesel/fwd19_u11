@@ -4,10 +4,7 @@ const RecipeSchema = new mongoose.Schema({
   airTemp: [Number],
   beanTemp: [Number],
   blower: [Number],
-  minutes: Number,
-  user: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-  beans: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Bean' }]
-  
+  minutes: Number
 })
 
 const Recipe = mongoose.model('Recipe', RecipeSchema)

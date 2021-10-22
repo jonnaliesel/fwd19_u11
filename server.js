@@ -10,6 +10,8 @@ connectDB()
 app.use(express.json())
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/private', require('./routes/private'))
+app.use('/api/bean', require('./routes/bean'))
+app.use('/api/recipe', require('./routes/recipe'))
 
 // Error Handler
 app.use(errorHandler)

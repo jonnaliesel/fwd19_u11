@@ -5,7 +5,6 @@ const BeanSchema = new mongoose.Schema({
   country: String,
   notes: [String],
   labels: [String],
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   recipes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Recipe' }]
   
 })

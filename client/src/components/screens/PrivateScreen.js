@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import BeanList from '../beans/BeanList'
 
 const PrivateScreen = ({ history }) => {
     const [error, setError] = useState('')
@@ -39,10 +40,15 @@ const PrivateScreen = ({ history }) => {
         <span className="text-red-800">{error}</span>
     ) : (
         <>
-            <div className="bg-coffee text-white p-6">{userInfo.firstName} {userInfo.lastName}</div>
-            <button className="" onClick={logoutHandler}>Logout</button>
+            <div className="bg-coffee text-white p-6">Welcome back {userInfo.firstName}!</div>
+            <BeanList userId={userInfo.id}/>
+            <button className="mt-4 px-6 py-1 
+                    bg-coffee hover:bg-light 
+                    rounded-full
+                    text-light hover:text-coffee" 
+                onClick={logoutHandler}>Logout</button>
         </>
     )
 }
 
-export default PrivateScreen
+export default PrivateScreen 

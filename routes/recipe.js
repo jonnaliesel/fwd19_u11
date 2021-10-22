@@ -7,11 +7,12 @@ const {
   findAll,
   update,
   remove 
-} = require('../controllers/bean')
+} = require('../controllers/recipe')
 
 
-router.route('/create').post(create)
-router.route('/all/:id').get(findAll)
+router.route('/create').get(create)
+router.route('/').get(findAll)
+router.route('/:id').get(findOne)
 router.route('/update/:id').put(update)
 router.route('/delete/:id').delete(remove)
 
